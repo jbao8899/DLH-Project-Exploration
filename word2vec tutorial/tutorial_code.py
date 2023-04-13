@@ -3,6 +3,34 @@ import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
+from torch.utils.data import Dataset
+
+
+class CustomDatasetEmbedded(Dataset):
+    def __init__(self, corpus):
+        """
+        Store the corpus and labels (not present yet)
+        """
+
+        self.x = corpus
+        self.y = torch.zeros(len(corpus)) # CHANGE IN REAL CODE!!!
+
+    def __len__(self):
+
+        """
+        Return the number of documents
+        """
+
+        return len(self.y)
+
+    def __getitem__(self, index):
+        """
+        Return one document (represented as a tensor, with each row being
+        the embedding for one word in that document), and its label (currently always 0)
+        """
+
+        return (self.x[index], self.y[index])
+
 
 df = pd.read_csv('data.csv')
 print(df.head())
@@ -52,11 +80,24 @@ print("len(model.wv.most_similar('Mercedes-Benz SLK-Class', topn=None))")
 print(len(model.wv.most_similar('Mercedes-Benz SLK-Class', topn=None)))
 print()
 
-mini_corpus = [['premium unleaded (required)', 'MANUAL', 'rear wheel drive', 'Factory Tuner', 'Luxury', 'High-Performance', 'Compact', 'Coupe', 'BMW 1 Series M'],
-               ['premium unleaded (required)', 'MANUAL', 'rear wheel drive', 'Luxury', 'Performance', 'Compact', 'Convertible', 'BMW 1 Series']]
+# mini_corpus = [['premium unleaded (required)', 'MANUAL', 'rear wheel drive', 'Factory Tuner', 'Luxury', 'High-Performance', 'Compact', 'Coupe', 'BMW 1 Series M'],
+#                ['premium unleaded (required)', 'MANUAL', 'rear wheel drive', 'Luxury', 'Performance', 'Compact', 'Convertible', 'BMW 1 Series']]
 
-for doc in mini_corpus:
-    print(len(doc))
-    print(torch.stack([torch.from_numpy(model.wv[word]) for word in doc]).shape)
+# for doc in mini_corpus:
+#     print(len(doc))
+#     print(torch.stack([torch.from_numpy(model.wv[word].copy()) for word in doc]).shape)
 
-print(torch.stack([torch.from_numpy(model.wv[word]) for word in mini_corpus[0]]))
+# # Printing this seems to take a long time for some reason????
+# # print(torch.stack([torch.from_numpy(model.wv[word].copy()) for word in mini_corpus[0]]))
+
+docs_as_tensors = [None] * len(sent)
+
+i = 0
+for doc in sent:
+    # Like so????
+    # This is fairly fast
+    docs_as_tensors[i] = torch.stack([torch.from_numpy(model.wv[word].copy()) for word in doc])
+    i += 1
+
+print(len(docs_as_tensors))
+print(docs_as_tensors[len(docs_as_tensors) - 1].shape)

@@ -15,20 +15,27 @@
 
 # How do you store large amounts of embedded documents before operating on them?
 # Within a pytorch dataset?
-# Discuss data storage with TA, vector size???
-# Maybe make at least one CNN, one baseline???
+# Can store however you want, just make sure to return one X and one y in __getitem__()
+# Probably not too large, gensim embedding can be done separately
+# What about before the dataset is made
+
+# Maybe make at least one CNN, one baseline
+# One CNN is fine for draft, maybe a few for final, don't need every one
 
 # How close????
 
 # 70% train, 10% validation, 20% test???? Hyperparameters????
 
-# How many baselines??? How many CNNs????
+# How many baselines -> Don't need to do them. Maybe do a few if we have time. Use their hyperparameters for baselines
 
-# positive and negative words???
+# Start with default vector size for embedding
 
-# How close to his procedures????
+# Try to be close to original preprocessing -> don't need to be exactly the same
 
-# Computational Requirements
+# Ask Luke:
+# Preprocessing???
+# Has "Dementia" field, but not investigated?
+# .lower() was commented out???
 
 import numpy as np
 import pandas as pd
