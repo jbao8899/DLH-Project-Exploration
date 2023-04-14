@@ -11,8 +11,6 @@
 
 # Was his word2vec code included?-> don't think so
 
-# START HERE:
-
 # How do you store large amounts of embedded documents before operating on them?
 # Within a pytorch dataset?
 # Can store however you want, just make sure to return one X and one y in __getitem__()
@@ -22,15 +20,28 @@
 # Maybe make at least one CNN, one baseline
 # One CNN is fine for draft, maybe a few for final, don't need every one
 
-# How close????
-
-# 70% train, 10% validation, 20% test???? Hyperparameters????
-
 # How many baselines -> Don't need to do them. Maybe do a few if we have time. Use their hyperparameters for baselines
 
-# Start with default vector size for embedding
+# Start with default vector size for embedding -> he said 300?
 
 # Try to be close to original preprocessing -> don't need to be exactly the same
+
+# 70% train, 10% validation, 20% test???? Hyperparameters???? -> don't need to reimplement hyperparameter study
+
+# Estimation -> doesn't have to be very concrete.
+# Just say time
+# Not mentioned memory, runtime in paper
+
+# START HERE
+# What does memory use mean??
+# Make sure to not push data to github???
+# CNN Hyperparameters.
+# "We set the number of feature maps for each convolution width to 100 ->  -> out_channels = 100????
+# and used dropout with a probability of 0.5 to prevent overfitting [1]."
+# All parameters were initialized using a uniform distribution from −0.05 to 0.05.
+# The model was trained with adadelta [2].
+# After every parameter update, the parameters of the feature maps were normalized to a norm of 3?????
+# local output = nn.LogSoftMax()(linear(nn.Dropout(opt.dropout_p)(last_layer))) -> Look through Lua code for sequence of events
 
 # Ask Luke:
 # Preprocessing???

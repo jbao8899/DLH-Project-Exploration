@@ -1,2 +1,4 @@
-NOTEEVENTS.csv
-NOTEEVENTS.csv.gz
+*.csv
+*.gz
+*.pt
+*.wordvectors
